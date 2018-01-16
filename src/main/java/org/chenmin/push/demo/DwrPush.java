@@ -49,6 +49,7 @@ public class DwrPush {
     @SuppressWarnings("deprecation")
     @RemoteMethod
     public static boolean Send(String username,String msg) {
+        System.out.println("SendAll:"+username+"，"+msg);
         WebContext webContext = WebContextFactory.get();
         Collection<ScriptSession> sessions = webContext.getAllScriptSessions();
         List<ScriptSession> boot =  new ArrayList<ScriptSession>();
@@ -78,6 +79,7 @@ public class DwrPush {
     @SuppressWarnings("deprecation")
     @RemoteMethod
     public static void SendAll(String msg) {
+        System.out.println("SendAll:"+msg);
         WebContext webContext = WebContextFactory.get();
         Collection<ScriptSession> sessions = webContext.getAllScriptSessions();
         // 构建发送所需的JS脚本

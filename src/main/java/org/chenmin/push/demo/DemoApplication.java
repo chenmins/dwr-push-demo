@@ -20,9 +20,14 @@ public class DemoApplication {
 	}
 
 	@RequestMapping("/")
-	public String push() {
+	public String index() {
 		return "index";
 	}
+
+    @RequestMapping("/test")
+    public String test() {
+        return "test";
+    }
 
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean() {
