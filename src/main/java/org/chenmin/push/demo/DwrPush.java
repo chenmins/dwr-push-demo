@@ -19,6 +19,7 @@ public class DwrPush {
 
     @RemoteMethod
     public boolean login(String username,String password){
+        System.out.println("login:"+username+"，"+password);
         if(username.equals(password)){
             String name = "username";
             setScriptAttribute(name, username);

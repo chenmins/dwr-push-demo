@@ -13,7 +13,7 @@
 
         $(document).ready(function(){
             // dwr改成同步
-            dwr.engine.setAsync(false);
+            // dwr.engine.setAsync(false);
             // 页面加载的时候进行反转的激活
             dwr.engine.setActiveReverseAjax(true) ;
             $("#sendDiv").hide();
@@ -22,17 +22,19 @@
                 // 此类即为根据java文件生成的js文件
                 var username_login = $("#username_login").val();
                 var password_login = $("#password_login").val();
-                var b = DwrPush.login(username_login,password_login);
-                if(b){
-                    var uname = DwrPush.getUsername();
-                    var wel = "Welcome,"+uname;
-                    DwrPush.SendAll(wel);
-                    $("#usernameDiv").html(wel);
-                    $("#loginDiv").hide();
-                    $("#sendDiv").show();
-                }else{
-                    alert(username_login+" password is error");
-                }
+                DwrPush.login(username_login,password_login,function(b){
+                    if(b){
+                        DwrPush.getUsername(function(uname){
+                            var wel = "Welcome,"+uname;
+                            DwrPush.SendAll(wel);
+                            $("#usernameDiv").html(wel);
+                            $("#loginDiv").hide();
+                            $("#sendDiv").show();
+                        });
+                    }else{
+                        alert(username_login+" password is error");
+                    }
+                });
             });
 
             $("#publishAll").click(function(){
@@ -42,10 +44,11 @@
             $("#publish").click(function(){
                 var username = $("#username").val();
                 var userdata = $("#userdata").val();
-                var b = DwrPush.Send(username,userdata);
-                if(!b){
-                    alert("username "+username+" is not Online");
-                }
+                DwrPush.Send(username,userdata,function(b){
+                    if(!b){
+                        alert("username "+username+" is not Online");
+                    }
+                });
             });
         });
 

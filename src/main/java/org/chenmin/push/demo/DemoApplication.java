@@ -35,7 +35,9 @@ public class DemoApplication {
 		ServletRegistrationBean registrationBean = new ServletRegistrationBean(servlet, "/dwr/*");
 		registrationBean.addInitParameter("debug", "true");
 		registrationBean.addInitParameter("activeReverseAjaxEnabled", "true");
-		registrationBean.addInitParameter("crossDomainSessionSecurity", "true");
+		registrationBean.addInitParameter("crossDomainSessionSecurity", "false");
+		registrationBean.addInitParameter("allowScriptTagRemoting", "true");
+        registrationBean.addInitParameter("allowGetForSafariButMakeForgeryEasier", "true");
 		return registrationBean;
 	}
 }
